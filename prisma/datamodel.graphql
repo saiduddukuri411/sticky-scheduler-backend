@@ -1,7 +1,8 @@
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   name: String!
+  password: String!
   schedules: [Schedule!]! @relation(name: "ScheduleToUser", onDelete: CASCADE)
 }
 
@@ -12,10 +13,10 @@ enum Priority {
 }
 
 type Schedule {
-  id: ID! @unique
+  id: ID! @id
   title: String!
   subtasks: String
   user: User! @relation(name: "ScheduleToUser", onDelete: SET_NULL)
-  data: DateTime!
+  date: DateTime!
   priority: Priority!
 }
