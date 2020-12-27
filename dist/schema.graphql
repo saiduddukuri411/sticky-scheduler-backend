@@ -1,0 +1,43 @@
+#import Priority from './generated/prisma.graphql'
+type Query{
+  Users:[ User! ]!
+}
+type Mutation{
+    signUp( data: userSignUpInfo! ): userSignInOutput!
+    logIn( data: logInInfo! ): userSignInOutput!
+    createSchedule( data: createScheduleInfo! ): Schedule
+}
+
+#user defined
+input createScheduleInfo{
+  title: String!
+  date: String!
+  priority: Priority!
+}
+type userSignInOutput{
+  user: User!
+  token: String!
+}
+type User{
+    id: ID!
+    email: String!
+    name: String!
+}
+
+type Schedule{
+  id: ID!
+  title: String!
+  date: String!
+  priority: Priority!
+}
+
+#input types
+input userSignUpInfo{
+  email: String!
+  name: String!
+  password: String!
+}
+input logInInfo{
+  email: String!
+  password: String!
+}
